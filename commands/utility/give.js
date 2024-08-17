@@ -3,7 +3,7 @@ const { db, ref, get, set } = require('../../firebase');
 
 const exampleEmbed = (username, avatarUrl, botAvatarUrl, userToGive, giveAmount) => new EmbedBuilder()
     .setColor(0x8BCF00)
-    .setTitle('🪙 NerdCoins Give')
+    .setTitle('🪙 NerdCoins | Give')
     .setAuthor({ name: 'nerdbot', iconURL: botAvatarUrl })
     .setDescription(`Are you sure you want to give **${giveAmount} 🪙** to *${userToGive}*?`)
     .setThumbnail("https://em-content.zobj.net/source/telegram/386/coin_1fa99.webp")
@@ -32,7 +32,7 @@ const getUserData = async (userId, username, avatarURL, botAvatarURL, giveAmount
                         .setStyle(ButtonStyle.Danger)
                         .setEmoji('❌'),
                 );
-            return { embeds: [exampleEmbed(username, avatarURL, botAvatarURL, existingData.username, giveAmount)], components: [row] };
+            return { embeds: [exampleEmbed(username, avatarURL, botAvatarURL, existingData.username, giveAmount)], components: [row], };
         } else {
             return { content: 'User hasn\'t registered yet. Use the `/register` command to start using NerdCoins!', ephemeral: true };
         }
@@ -53,7 +53,9 @@ module.exports = {
         .addIntegerOption(option =>
             option.setName('amount')
                 .setDescription('Amount of coins to give')
-                .setRequired(true)),
+                .setRequired(true)
+                .setMinValue(1)
+                .setMaxValue(1_000_000)),
 
     async execute(interaction) {
         const targetUser = interaction.options.getUser('target');
@@ -65,8 +67,13 @@ module.exports = {
         const botAvatarURL = interaction.client.user.displayAvatarURL({ dynamic: true, size: 1024 });
 
         try {
-            const response = await getUserData(userId, username, avatarURL, botAvatarURL, giveAmount, interid);
-            await interaction.reply(response);
+            if (targetUser == interaction.user) {
+                await interaction.reply("```You can't send coins to yourself.```")
+            } else {
+                const response = await getUserData(userId, username, avatarURL, botAvatarURL, giveAmount, interid);
+                await interaction.reply(response);
+            }
+            
         } catch (error) {
             console.error('Error executing the command:', error);
             await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });

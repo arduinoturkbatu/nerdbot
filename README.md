@@ -26,6 +26,8 @@ Experimental bot for Discord.
 
 - **/balance {target}** Get your or a user's NerdCoin balance.
 - **/give *{target} *{amount}** Send some coins.
+- **/gamble** Gamble your NerdCoins! Win or lose between -50 and 100 coins.
+- **/leaderboard** Displays the top 10 users with the most NerdCoins.
 - **/register** Start using NerdCoins.
 
 ## Before forking.

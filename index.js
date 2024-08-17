@@ -7,6 +7,7 @@ const { db, ref, get, set } = require('./firebase'); // Ensure the correct path 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
 client.commands = new Collection();
+client.cooldowns = new Collection();
 const commandsPath = path.join(__dirname, 'commands/utility');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
@@ -82,6 +83,8 @@ client.on(Events.InteractionCreate, async interaction => {
                 .addFields(
                     { name: "`balance {target}`", value: "Get your or a user's NerdCoin balance. target is optional." },
                     { name: "`give *{target} *{amount}`", value: "Send some coins. target and amount are required." },
+                    { name: "`gamble`", value: "Gamble your NerdCoins! Win or lose between -50 and 100 coins." },
+                    { name: "`leaderboard`", value: "Displays the top 10 users with the most NerdCoins." },
                     { name: "`register`", value: "Start using NerdCoins." }
                 )
                 .setTimestamp();
@@ -122,7 +125,7 @@ client.on(Events.InteractionCreate, async interaction => {
             }
         } else if (customId === 'no') {
             // Handle the "No" button click
-            await interaction.update({ content: 'Coin transfer canceled.', components: [] });
+            await interaction.update({ content: '```Coin transfer canceled.```', components: [] });
         }
     }
 });
