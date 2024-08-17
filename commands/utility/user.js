@@ -1,12 +1,35 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('user')
-        .setDescription('Provides information about the user.'),
+        .setDescription('Displays information about a user.')
+        .addUserOption(option =>
+            option.setName('target')
+                .setDescription('The user to get information about')
+                .setRequired(false)),  // Making this option optional
+
     async execute(interaction) {
-        // interaction.user is the object representing the User who ran the command
-        // interaction.member is the GuildMember object, which represents the user in the specific guild
-        await interaction.reply(`This command was run by ${interaction.user.username}, who joined on ${interaction.member.joinedAt}.`);
+        // Get the user mentioned or the command issuer if no user is mentioned
+        const user = interaction.options.getUser('target') || interaction.user;
+        const member = interaction.guild.members.cache.get(user.id);
+        const reqBy = interaction.user.username;
+
+        // Create an embed with user information
+        const userEmbed = new EmbedBuilder()
+            .setColor(0x8BCF00)
+            .setTitle(`${user.username}'s Information`)
+            .setThumbnail(user.displayAvatarURL({ dynamic: true, size: 1024 }))
+            .addFields(
+                { name: 'Username', value: user.username, inline: true },
+                { name: 'Discriminator', value: `#${user.discriminator}`, inline: true },
+                { name: 'ID', value: user.id, inline: true },
+                { name: 'Joined Server', value: member ? new Date(member.joinedTimestamp).toLocaleDateString() : 'N/A', inline: true },
+                { name: 'Account Created', value: new Date(user.createdTimestamp).toLocaleDateString(), inline: true }
+            )
+            .setTimestamp()
+            .setFooter({ text: `Requested by ${reqBy}` });
+
+        await interaction.reply({ embeds: [userEmbed] });
     },
 };

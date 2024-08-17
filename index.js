@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const { token } = require('./config.json');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -41,6 +41,63 @@ client.on(Events.InteractionCreate, async interaction => {
         } else {
             await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
         }
+    }
+});
+
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isButton()) return;
+
+    if (interaction.customId === 'info') {
+        const newEmbed = new EmbedBuilder()
+            .setColor(0x8BCF00)
+            .setTitle('ℹ️ Info')
+            .addFields(
+                {
+                    name: "`/help`",
+                    value: "Shows all available commands."
+                },
+                {
+                    name: "`/ping`",
+                    value: "Replies with pong."
+                },
+                {
+                    name: "`/server`",
+                    value: "Displays information about the server."
+                },
+                {
+                    name: "`/user {target}`",
+                    value: "Displays information about a user. target is optional."
+                },
+            )
+            .setTimestamp();
+
+        await interaction.reply({ content: '', ephemeral: true, embeds: [newEmbed] });
+    } else if (interaction.customId === 'fun') {
+        const newEmbed = new EmbedBuilder()
+            .setColor(0x8BCF00)
+            .setTitle('🎡 Fun')
+            .addFields(
+                {
+                    name: "Not available",
+                    value: ":("
+                },
+            )
+            .setTimestamp();
+
+        await interaction.reply({ content: '', ephemeral: true, embeds: [newEmbed] });
+    } else if (interaction.customId === 'coins') {
+        const newEmbed = new EmbedBuilder()
+            .setColor(0x8BCF00)
+            .setTitle('🪙 NerdCoins')
+            .addFields(
+                {
+                    name: "Not available",
+                    value: ":("
+                },
+            )
+            .setTimestamp();
+
+        await interaction.reply({ content: '', ephemeral: true, embeds: [newEmbed] });
     }
 });
 
