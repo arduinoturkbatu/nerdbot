@@ -24,7 +24,9 @@ Experimental bot for Discord.
 
 ### NerdCoins
 
-Not yet available.
+- **/balance {target}** Get your or a user's NerdCoin balance.
+- **/give *{target} *{amount}** Send some coins.
+- **/register** Start using NerdCoins.
 
 ## Before forking.
 Make sure you have `config.json` file on the base directory. Your file should have `clientId`, `guildId` and `token`.
