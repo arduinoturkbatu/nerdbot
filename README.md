@@ -15,7 +15,12 @@ Experimental bot for Discord.
 
 ### Fun
 
-Not yet available.
+- **/8ball \*{question}** Ask the Magic 8-Ball a question.
+- **/funfact** Get a random fun fact.
+- **/joke** Get a random joke.
+- **/meme** Get a random meme.
+- **/petpic \*{type}** Get a random pet picture. type can be Dog or Cat.
+- **/quote** Get a random inspirational quote.
 
 ### NerdCoins
 

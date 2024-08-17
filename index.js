@@ -78,8 +78,28 @@ client.on('interactionCreate', async interaction => {
             .setTitle('🎡 Fun')
             .addFields(
                 {
-                    name: "Not available",
-                    value: ":("
+                    name: "`8ball *{question}`",
+                    value: "Ask the Magic 8-Ball a question."
+                },
+                {
+                    name: "`funfact`",
+                    value: "Get a random fun fact."
+                },
+                {
+                    name: "`joke`",
+                    value: "Get a random joke."
+                },
+                {
+                    name: "`meme`",
+                    value: "Get a random meme."
+                },
+                {
+                    name: "`petpic *{type}`",
+                    value: "Get a random pet picture. type can be Dog or Cat."
+                },
+                {
+                    name: "`quote`",
+                    value: "Get a random inspirational quote."
                 },
             )
             .setTimestamp();
