@@ -10,6 +10,7 @@ Experimental bot for Discord.
 
 - **/help** Shows all available commands.
 - **/ping** Replies with pong.
+- **/random \*{min} \*{max}** Generate a random number between min and max.
 - **/server** Displays information about the server.
 - **/user {target}** Displays information about a user. target is optional.
 

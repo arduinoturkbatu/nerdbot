@@ -57,6 +57,7 @@ client.on(Events.InteractionCreate, async interaction => {
                 .addFields(
                     { name: "`/help`", value: "Shows all available commands." },
                     { name: "`/ping`", value: "Replies with pong." },
+                    { name: "`/random *{min} *{max}`", value: "Generate a random number between min and max. min and max are required." },
                     { name: "`/server`", value: "Displays information about the server." },
                     { name: "`/user {target}`", value: "Displays information about an user. target is optional." },
                     { name: "`/qrcode *{text}`", value: "Generate a QR code from text. text is required."}
