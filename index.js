@@ -3,6 +3,7 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const { token } = require('./config.json');
 const { db, ref, get, set } = require('./firebase'); // Ensure the correct path to your firebase module
+const nerdcoinEmoji = "<:nerdcoin:1274630170795315330>";
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
@@ -50,20 +51,20 @@ client.on(Events.InteractionCreate, async interaction => {
 
         if (customId === 'info') {
             const newEmbed = new EmbedBuilder()
-                .setColor(0x8BCF00)
+                .setColor(0x150E1A)
                 .setTitle('ℹ️ Info')
                 .addFields(
                     { name: "`/help`", value: "Shows all available commands." },
                     { name: "`/ping`", value: "Replies with pong." },
                     { name: "`/server`", value: "Displays information about the server." },
-                    { name: "`/user {target}`", value: "Displays information about a user. target is optional." }
+                    { name: "`/user {target}`", value: "Displays information about an user. target is optional." }
                 )
                 .setTimestamp();
 
             await interaction.reply({ content: '', ephemeral: true, embeds: [newEmbed] });
         } else if (customId === 'fun') {
             const newEmbed = new EmbedBuilder()
-                .setColor(0x8BCF00)
+                .setColor(0x150E1A)
                 .setTitle('🎡 Fun')
                 .addFields(
                     { name: "`8ball *{question}`", value: "Ask the Magic 8-Ball a question." },
@@ -78,10 +79,11 @@ client.on(Events.InteractionCreate, async interaction => {
             await interaction.reply({ content: '', ephemeral: true, embeds: [newEmbed] });
         } else if (customId === 'coins') {
             const newEmbed = new EmbedBuilder()
-                .setColor(0x8BCF00)
-                .setTitle('🪙 NerdCoins')
+                .setColor(0x150E1A)
+                .setTitle(`${nerdcoinEmoji} NerdCoins`)
                 .addFields(
                     { name: "`balance {target}`", value: "Get your or a user's NerdCoin balance. target is optional." },
+                    { name: "`coinflip *{side} *{amount}`", value: "Flip a coin and bet an amount. side and amount are required." },
                     { name: "`give *{target} *{amount}`", value: "Send some coins. target and amount are required." },
                     { name: "`gamble`", value: "Gamble your NerdCoins! Win or lose between -50 and 100 coins." },
                     { name: "`leaderboard`", value: "Displays the top 10 users with the most NerdCoins." },
@@ -118,7 +120,7 @@ client.on(Events.InteractionCreate, async interaction => {
                 await Promise.all([set(userRef, userData), set(targetUserRef, targetUserData)]);
 
                 // Send success message
-                await interaction.editReply({ content: `You have successfully given **${giveAmount} 🪙** to <@${targetUserId}>.`, components: [] });
+                await interaction.editReply({ content: `You have successfully given **${giveAmount} ${nerdcoinEmoji}** to <@${targetUserId}>.`, components: [] });
             } catch (error) {
                 console.error('Error handling button interaction:', error);
                 await interaction.editReply({ content: `An error occurred: ${error.message}`, ephemeral: true });

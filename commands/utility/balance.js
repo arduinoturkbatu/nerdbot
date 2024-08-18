@@ -1,11 +1,12 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { db, ref, get } = require('../../firebase');
+const nerdcoinEmoji = "<:nerdcoin:1274630170795315330>";
 
 const exampleEmbed = (username, avatarUrl, serverIconUrl, botAvatarUrl, coinsCount) => new EmbedBuilder()
-    .setColor(0x8BCF00)
-    .setTitle('🪙 NerdCoins Balance')
+    .setColor(0x150E1A)
+    .setTitle(`${nerdcoinEmoji} NerdCoins Balance`)
     .setAuthor({ name: 'nerdbot', iconURL: botAvatarUrl })
-    .setDescription(`**Balance of *${coinsCount.username}*:** ${coinsCount.balance} 🪙`)
+    .setDescription(`**Balance of *${coinsCount.username}*:** ${coinsCount.balance} ${nerdcoinEmoji}`)
     .setThumbnail(serverIconUrl)
     .setTimestamp()
     .setFooter({ text: `Requested by ${username}`, iconURL: avatarUrl });

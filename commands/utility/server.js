@@ -11,7 +11,7 @@ module.exports = {
 
         // Create an embed with server information
         const serverEmbed = new EmbedBuilder()
-            .setColor(0x8BCF00)
+            .setColor(0x150E1A)
             .setTitle(`${guild.name}'s Information`)
             .setThumbnail(guild.iconURL({ dynamic: true, size: 1024 }))
             .addFields(

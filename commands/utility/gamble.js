@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const { db, ref, get, set } = require('../../firebase');
+const nerdcoinEmoji = "<:nerdcoin:1274630170795315330>";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -35,11 +36,11 @@ module.exports = {
             // Determine the outcome message
             let resultMessage;
             if (gambleResult > 0) {
-                resultMessage = `🎉 You won **${gambleResult} 🪙**! Your new balance is **${newBalance} 🪙**.`;
+                resultMessage = `🎉 You won **${gambleResult} ${nerdcoinEmoji}**! Your new balance is **${newBalance} ${nerdcoinEmoji}**.`;
             } else if (gambleResult < 0) {
-                resultMessage = `😢 You lost **${Math.abs(gambleResult)} 🪙**. Your new balance is **${newBalance} 🪙**.`;
+                resultMessage = `😢 You lost **${Math.abs(gambleResult)} ${nerdcoinEmoji}**. Your new balance is **${newBalance} ${nerdcoinEmoji}**.`;
             } else {
-                resultMessage = `😐 You broke even. Your balance remains at **${newBalance} 🪙**.`;
+                resultMessage = `😐 You broke even. Your balance remains at **${newBalance} ${nerdcoinEmoji}**.`;
             }
 
             // Reply to the interaction with the result

@@ -1,7 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const nerdcoinEmoji = "<:nerdcoin:1274630170795315330>";
 
 const exampleEmbed = (username, avatarUrl, serverIconUrl, botAvatarUrl) => new EmbedBuilder()
-    .setColor(0x8BCF00)
+    .setColor(0x150E1A)
     .setTitle('Help')
     .setAuthor({ name: 'nerdbot', iconURL: botAvatarUrl })  // Use a URL here
     .setDescription('See all available commands.')
@@ -35,7 +36,7 @@ module.exports = {
                     .setCustomId('coins')
                     .setLabel('NerdCoins')
                     .setStyle(ButtonStyle.Success)
-                    .setEmoji('🪙')
+                    .setEmoji(`${nerdcoinEmoji}`)
             );
 
         await interaction.reply({ embeds: [exampleEmbed(username, avatarURL, serverIconURL, botAvatarURL)], components: [row] });

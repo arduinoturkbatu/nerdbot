@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { db, ref, get } = require('../../firebase');
+const nerdcoinEmoji = "<:nerdcoin:1274630170795315330>";
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -29,14 +30,14 @@ module.exports = {
 
             // Create an embed for the leaderboard
             const leaderboardEmbed = new EmbedBuilder()
-                .setColor(0x8BCF00)
+                .setColor(0x150E1A)
                 .setTitle('🏆 NerdCoins Leaderboard')
                 .setDescription('Top 10 users with the most NerdCoins')
                 .setTimestamp()
                 .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true, size: 1024 }) });;
 
             sortedUsers.forEach((user, index) => {
-                leaderboardEmbed.addFields({ name: `#${index + 1} - ${user.username}`, value: `${user.balance} 🪙` });
+                leaderboardEmbed.addFields({ name: `#${index + 1} - ${user.username}`, value: `${user.balance} ${nerdcoinEmoji}` });
             });
 
             // Send the embed to the channel

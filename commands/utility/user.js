@@ -1,9 +1,8 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('user')
-        .setDescription('Displays information about a user.')
+        .setDescription('Displays information about an user.')
         .addUserOption(option =>
             option.setName('target')
                 .setDescription('The user to get information about')
@@ -17,7 +16,7 @@ module.exports = {
 
         // Create an embed with user information
         const userEmbed = new EmbedBuilder()
-            .setColor(0x8BCF00)
+            .setColor(0x150E1A)
             .setTitle(`${user.username}'s Information`)
             .setThumbnail(user.displayAvatarURL({ dynamic: true, size: 1024 }))
             .addFields(
