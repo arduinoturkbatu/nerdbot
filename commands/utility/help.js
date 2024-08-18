@@ -36,7 +36,12 @@ module.exports = {
                     .setCustomId('coins')
                     .setLabel('NerdCoins')
                     .setStyle(ButtonStyle.Success)
-                    .setEmoji(`${nerdcoinEmoji}`)
+                    .setEmoji(`${nerdcoinEmoji}`),
+                new ButtonBuilder()
+                    .setCustomId('games')
+                    .setLabel('Games')
+                    .setStyle(ButtonStyle.Danger)
+                    .setEmoji(`🕹️`)
             );
 
         await interaction.reply({ embeds: [exampleEmbed(username, avatarURL, serverIconURL, botAvatarURL)], components: [row] });

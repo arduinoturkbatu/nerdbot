@@ -31,6 +31,9 @@ Experimental bot for Discord.
 - **/leaderboard** Displays the top 10 users with the most NerdCoins.
 - **/register** Start using NerdCoins.
 
+## Games
+- **/rps** Play Rock-Paper-Scissors!
+
 ## Before forking.
 Make sure you have `config.json` file on the base directory. Your file should look like this:
 ```json

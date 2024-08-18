@@ -3,6 +3,7 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 const { token } = require('./config.json');
 const { db, ref, get, set } = require('./firebase'); // Ensure the correct path to your firebase module
+const { handleRPSInteraction } = require('./commands/utility/rps');
 const nerdcoinEmoji = "<:nerdcoin:1274630170795315330>";
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
@@ -128,6 +129,18 @@ client.on(Events.InteractionCreate, async interaction => {
         } else if (customId === 'no') {
             // Handle the "No" button click
             await interaction.update({ content: '```Coin transfer canceled.```', components: [] });
+        } else if (['rock', 'paper', 'scissors'].includes(interaction.customId)) {
+            await handleRPSInteraction(interaction);
+        } else if (customId === 'games') {
+            const newEmbed = new EmbedBuilder()
+                .setColor(0x150E1A)
+                .setTitle(`🕹️ Games`)
+                .addFields(
+                    { name: "`rps`", value: "Play Rock-Paper-Scissors!" }
+                )
+                .setTimestamp();
+
+            await interaction.reply({ content: '', ephemeral: true, embeds: [newEmbed] });
         }
     }
 });
