@@ -24,7 +24,7 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setCustomId('info')
-                    .setLabel('Info')
+                    .setLabel('Utilities')
                     .setStyle(ButtonStyle.Primary)
                     .setEmoji('ℹ️'),
                 new ButtonBuilder()

@@ -53,12 +53,13 @@ client.on(Events.InteractionCreate, async interaction => {
         if (customId === 'info') {
             const newEmbed = new EmbedBuilder()
                 .setColor(0x150E1A)
-                .setTitle('ℹ️ Info')
+                .setTitle('ℹ️ Utilities')
                 .addFields(
                     { name: "`/help`", value: "Shows all available commands." },
                     { name: "`/ping`", value: "Replies with pong." },
                     { name: "`/server`", value: "Displays information about the server." },
-                    { name: "`/user {target}`", value: "Displays information about an user. target is optional." }
+                    { name: "`/user {target}`", value: "Displays information about an user. target is optional." },
+                    { name: "`/qrcode *{text}`", value: "Generate a QR code from text. text is required."}
                 )
                 .setTimestamp();
 
@@ -86,7 +87,7 @@ client.on(Events.InteractionCreate, async interaction => {
                     { name: "`balance {target}`", value: "Get your or a user's NerdCoin balance. target is optional." },
                     { name: "`coinflip *{side} *{amount}`", value: "Flip a coin and bet an amount. side and amount are required." },
                     { name: "`give *{target} *{amount}`", value: "Send some coins. target and amount are required." },
-                    { name: "`gamble`", value: "Gamble your NerdCoins! Win or lose between -50 and 100 coins." },
+                    { name: "`gamble`", value: "Gamble your NerdCoins! Win or lose between -500 and 1000 coins." },
                     { name: "`leaderboard`", value: "Displays the top 10 users with the most NerdCoins." },
                     { name: "`register`", value: "Start using NerdCoins." }
                 )
@@ -136,7 +137,8 @@ client.on(Events.InteractionCreate, async interaction => {
                 .setColor(0x150E1A)
                 .setTitle(`🕹️ Games`)
                 .addFields(
-                    { name: "`rps`", value: "Play Rock-Paper-Scissors!" }
+                    { name: "`rps`", value: "Play Rock-Paper-Scissors!" },
+                    { name: "`trivia`", value: "Start a trivia game" }
                 )
                 .setTimestamp();
 

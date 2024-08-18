@@ -5,7 +5,7 @@ const nerdcoinEmoji = "<:nerdcoin:1274630170795315330>";
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('gamble')
-        .setDescription('Gamble your NerdCoins! Win or lose between -50 and 100 coins.'),
+        .setDescription('Gamble your NerdCoins! Win or lose between -500 and 1000 coins.'),
 
     async execute(interaction) {
         const userId = interaction.user.id;
@@ -21,7 +21,7 @@ module.exports = {
             }
 
             // Weighted random generation: more likely to get higher numbers
-            const gambleResult = weightedRandom(-50, 100);
+            const gambleResult = (weightedRandom(-50, 100) * 10);
 
             if (isNaN(gambleResult)) {
                 throw new Error('Invalid gamble result: NaN');
