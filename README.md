@@ -2,7 +2,7 @@
 Experimental bot for Discord.
 
 ![logo](/images/logo.png)
-> Made possible with Discord.js
+> Made possible with Discord.js and FirebaseJS
 
 ## Commands
 
@@ -25,10 +25,34 @@ Experimental bot for Discord.
 ### NerdCoins
 
 - **/balance {target}** Get your or a user's NerdCoin balance.
-- **/give *{target} *{amount}** Send some coins.
+- **/coinflip \*{side} \*{amount}** Flip a coin and bet an amount.
+- **/give \*{target} \*{amount}** Send some coins.
 - **/gamble** Gamble your NerdCoins! Win or lose between -50 and 100 coins.
 - **/leaderboard** Displays the top 10 users with the most NerdCoins.
 - **/register** Start using NerdCoins.
 
 ## Before forking.
-Make sure you have `config.json` file on the base directory. Your file should have `clientId`, `guildId` and `token`.
+Make sure you have `config.json` file on the base directory. Your file should look like this:
+```json
+{
+    "clientId": /*...*/,
+    "guildId": /*...*/,
+    "token": /*...*/
+}
+```
+
+You need to setup Firebase Realtime Database. Make sure you have `firebase.js` file on the base directory. Your file should look like this:
+```js
+const { initializeApp } = require('firebase/app');
+const { getDatabase, ref, set, get } = require('firebase/database');
+
+const firebaseConfig = {
+    // get config file from Firebase Console
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+module.exports = { db, ref, set, get };
+
+```
