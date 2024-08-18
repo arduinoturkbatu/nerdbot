@@ -19,8 +19,9 @@ Experimental bot for Discord.
 - **/funfact** Get a random fun fact.
 - **/joke** Get a random joke.
 - **/meme** Get a random meme.
-- **/petpic \*{type}** Get a random pet picture. type can be Dog or Cat.
+- **/petpic \*{type}** Get a random pet picture.
 - **/quote** Get a random inspirational quote.
+- **/qrcode \*{text}** Generate a QR code from text.
 
 ### NerdCoins
 
@@ -33,6 +34,7 @@ Experimental bot for Discord.
 
 ## Games
 - **/rps** Play Rock-Paper-Scissors!
+- **/trivia** Start a trivia game
 
 ## Before forking.
 Make sure you have `config.json` file on the base directory. Your file should look like this:
